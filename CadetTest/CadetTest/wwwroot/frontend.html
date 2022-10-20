@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To-do CRUD</title>
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="my-3 border-bottom">
+            <h1>Kullanıcı Izinleri</h1>
+        </div>
+
+        <div class="mt-3">
+            <h4>Kullanıcı Seç:</h4>
+            <div class="my-2">
+                <button id="user1" class="mr-3 btn btn-primary" onclick="loginUser('User-5E638711-2D64-47B0-A8F5-1C5A9EADA966', 'Pass-E4A679C7-2F4B-40AE-9DC8-C967EF7215AE')">User 1</button>
+                <button id="user2" class="mr-3 btn btn-danger" onclick="loginUser('User-1A30567E-C121-44DF-8008-BCEBEC01BF0A', 'Pass-095584F8-0EFB-4F21-B3FB-7DB0899AE4A7')">User 2</button>
+                <button id="user3" class="mr-3 btn btn-info" onclick="loginUser('User-58076950-C311-4DD1-88DE-E682C164E3BE', 'Pass-15D6617D-721B-46D6-AC9C-B50E8EA207E0')">User 3</button>
+                <button id="user4" class="btn btn-dark" onclick="loginUser('User-DB42737F-6AAA-453C-A5E8-72EB5229C18C', 'Pass-5DD8829F-0DCA-4140-A022-048CB5964D36')">User 4</button>
+            </div>
+            <div id="user">
+                <b>Kullanıcı adı: </b><span id="username">User-5E638711-2D64-47B0-A8F5-1C5A9EADA966</span>
+            </div>
+        </div>
+
+        <button id="displayAddConsentForm" class="btn btn-success my-3">Yeni Kayıt Ekleme Formu</button>
+
+        <div id="addForm" style="display: none;" class="card p-3 mb-3">
+            <h4>Yeni Kayıt</h4>
+            <form class="mb-3" action="javascript:void(0);" method="POST" onsubmit="addConsent()">
+                <div class="form-group">
+                    <label for="recipient">Alıcı</label>
+                    <input type="email" class="form-control" id="add-recipient" name="add-recipient" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-type">Alıcı Türü</label>
+                    <input type="text" class="form-control" id="add-recipient-type" name="add-recipient-type" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" class="form-control" id="add-status" name="add-status" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Tipi">Tipi</label>
+                    <input type="text" class="form-control" id="add-type" name="add-type" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Oluştur</button>
+                <a onclick="toggleAddConsentForm()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <div id="editForm" class="card p-3 mb-3">
+            <h3>Mevcut Kaydı Güncelle</h3>
+            <form class="mb-3" action="javascript:void(0);" onsubmit="updateItem()">
+                <input type="hidden" id="edit-id">
+
+                <div class="form-group">
+                    <label for="recipient">Alıcı</label>
+                    <input class="form-control" type="text" id="edit-recipient" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-type">Alıcı Türü</label>
+                    <input class="form-control" type="text" id="edit-recipient-type" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input class="form-control" type="text" id="edit-status" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Tipi">Tipi</label>
+                    <input class="form-control" type="text" id="edit-type" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Alıcı</th>
+                    <th scope="col">Alıcı Türü</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tipi</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="consents"></tbody>
+        </table>
+    </div>
+    
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        loginUser('User-5E638711-2D64-47B0-A8F5-1C5A9EADA966', 'Pass-E4A679C7-2F4B-40AE-9DC8-C967EF7215AE');
+        displayConsents();
+    </script>
+</body>
+</html>
